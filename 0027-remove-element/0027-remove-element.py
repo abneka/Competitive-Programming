@@ -15,5 +15,3 @@ class Solution:
             left = left + 1
         
         return size
-            
-                
