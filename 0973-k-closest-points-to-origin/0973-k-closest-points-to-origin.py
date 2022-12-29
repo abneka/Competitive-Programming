@@ -3,11 +3,11 @@ class Solution:
         points = [[x**2 + y**2 , [x, y]] for x,y in points]
         points.sort()
         
-        ans = []
+        points = [points[i][1] for i in range(k)]
         
-        for i in range(k):
-            ans.append(points[i][1])
+        # for i in range(k):
+        #     ans.append(points[i][1])
         
-        return ans
+        return points
             
         
