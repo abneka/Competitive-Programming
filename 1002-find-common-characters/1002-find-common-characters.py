@@ -1,7 +1,10 @@
 class Solution:
     def commonChars(self, words: List[str]) -> List[str]:
-        res = collections.Counter(words[0])
+        counter = collections.Counter(words[0])
         
-        for char in words:
-            res = res & collections.Counter(char)
-        return list(res.elements())
+        for word in words:
+            counter = counter & collections.Counter(word)
+        
+        counter = list(counter.elements())
+        
+        return counter
