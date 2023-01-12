@@ -6,6 +6,8 @@ class Solution:
         if rows == 1:
             if target in matrix[0]:
                 return True
+            else:
+                return False
         
         for row in range(rows - 1):
             if target >= matrix[row][0] and target < matrix[row + 1][0]:
