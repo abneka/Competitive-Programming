@@ -6,13 +6,13 @@ class Solution(object):
         """
         R = len(matrix)
         C = len(matrix[0])
-        rows, cols = [], []
+        rows, cols = set(), set()
 
         for i in range(R):
             for j in range(C):
                 if matrix[i][j] == 0:
-                    rows.append(i)
-                    cols.append(j)
+                    rows.add(i)
+                    cols.add(j)
 
         for i in range(R):
             for j in range(C):
