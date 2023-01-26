@@ -4,22 +4,17 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
-        row_length = len(matrix)
-        col_length = len(matrix[0])
-        
-        def default():
-            return 1
-        
-        rows = defaultdict(default)
-        cols = defaultdict(default)
+        R = len(matrix)
+        C = len(matrix[0])
+        rows, cols = set(), set()
 
-        for i in range(row_length):
-            for j in range(col_length):
+        for i in range(R):
+            for j in range(C):
                 if matrix[i][j] == 0:
-                    rows[str(i)] = 0
-                    cols[str(j)] = 0
+                    rows.add(i)
+                    cols.add(j)
 
-        for i in range(row_length):
-            for j in range(col_length):
-                if not rows[str(i)] or not cols[str(j)]:
+        for i in range(R):
+            for j in range(C):
+                if i in rows or j in cols:
                     matrix[i][j] = 0
