@@ -15,6 +15,7 @@ class Solution:
             row_size = 0
             row_test = set()
             
+            
             if row_index//3 != change_cube_flag:
                 
                 for cube in range(3):
