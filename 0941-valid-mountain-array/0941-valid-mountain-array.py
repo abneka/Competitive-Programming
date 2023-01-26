@@ -21,7 +21,7 @@ class Solution:
                 
             elif arr[index] < maxi:
                 flag = False
-                maxi = arr[index]
+                maxi = arr[index] 
                 if dec_flag:
                     return False
                 continue
