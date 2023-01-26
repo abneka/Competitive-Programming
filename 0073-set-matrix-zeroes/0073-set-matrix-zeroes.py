@@ -12,9 +12,6 @@ class Solution(object):
         
         rows = defaultdict(default)
         cols = defaultdict(default)
-        # row['9'] = 0
-        # print(row['9'])
-        # rows, cols = [], []
 
         for i in range(row_length):
             for j in range(col_length):
