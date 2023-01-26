@@ -5,7 +5,7 @@ class Solution:
         
         for row in range(len(grid)-2):
             for col in range(len(grid[0])-2):
-                temp_grid = [grid[row+k][col:col+3] for k in range(3)]
+                temp_grid = [grid[row + element][col:col+3] for element in range(3)]
                 print(temp_grid, row, col, len(grid))
                 
                 check_nums = [num for row in temp_grid for num in row]
