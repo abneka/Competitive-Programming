@@ -7,7 +7,7 @@ class Solution:
         cnt = 0
         # Construct the 3x3 square
         for i in range(len(grid)-2):
-            for j in range(len(grid)-2):
+            for j in range(len(grid[0])-2):
                 temp_grid = [grid[i+k][j:j+3] for k in range(3)]
                 print(temp_grid, i, j, len(grid))
                 if self.isMagicSquare(temp_grid):
