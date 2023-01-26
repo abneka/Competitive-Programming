@@ -4,7 +4,7 @@ class Solution:
         counter = 0
         
         for row in range(len(grid)-2):
-            for col in range(len(grid)-2):
+            for col in range(len(grid[0])-2):
                 temp_grid = [grid[row + element][col:col+3] for element in range(3)]
                 print(temp_grid, row, col, len(grid))
                 
