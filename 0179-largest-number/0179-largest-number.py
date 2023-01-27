@@ -8,4 +8,4 @@ class Solution:
             for j in range(i-1):
                 if not compare(nums[j], nums[j+1]):
                     nums[j], nums[j+1] = nums[j+1], nums[j]
-        return str(int("".join(map(str, nums))))
+        return str(int("".join(map(str, nums)))) 
