@@ -16,5 +16,3 @@ class Solution:
             
             else:
                 right -= 1
-         
-        
