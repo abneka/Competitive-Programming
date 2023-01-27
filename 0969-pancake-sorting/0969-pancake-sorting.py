@@ -20,4 +20,4 @@ class Solution:
             rev.reverse()
             arr = rev + arr[k:]
             
-        return result
+        return result 
