@@ -15,4 +15,4 @@ class Solution:
                 left += 1
             
             else:
-                right -= 1 
+                right -= 1
