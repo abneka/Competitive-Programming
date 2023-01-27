@@ -7,4 +7,4 @@ class Solution:
             if num == target:
                 result.append(index)
         
-        return result
+        return result 
