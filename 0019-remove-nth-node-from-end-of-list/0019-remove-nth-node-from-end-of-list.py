@@ -16,4 +16,4 @@ class Solution:
             n -= 1
         
         left.next = left.next.next
-        return dummy.next 
+        return dummy.next
