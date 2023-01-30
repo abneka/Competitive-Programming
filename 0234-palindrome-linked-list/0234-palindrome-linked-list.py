@@ -24,4 +24,4 @@ class Solution:
                 return False
             stack.pop()
             curr = curr.next
-        return True
+        return True 
