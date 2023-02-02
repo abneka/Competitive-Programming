@@ -15,10 +15,8 @@ class Solution:
                 break
             anchor = anchor.next
         
-        
         if not anchor:
             return head
-
 
         curr = anchor.next
         
