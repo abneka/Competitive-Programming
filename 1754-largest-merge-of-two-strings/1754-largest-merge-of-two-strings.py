@@ -64,4 +64,4 @@ class Solution:
             merge += word2[char2:]
         
         
-        return merge
+        return merge 
