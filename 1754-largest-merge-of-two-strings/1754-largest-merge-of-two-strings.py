@@ -25,14 +25,15 @@ class Solution:
                 char2 += 1
             
             else:
+                
+                if word1[char1:] == word2[char2:]:
+                    is_equal = True
+                    # continue
+                    
                 if is_equal:
                     merge += word1[char1]
                     is_equal = False
                     char1 += 1
-                    continue
-                
-                if word1[char1:] == word2[char2:]:
-                    is_equal = True
                     continue
                 
                 count = 0
@@ -64,4 +65,4 @@ class Solution:
             merge += word2[char2:]
         
         
-        return merge 
+        return merge
