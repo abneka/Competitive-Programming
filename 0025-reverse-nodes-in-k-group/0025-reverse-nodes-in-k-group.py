@@ -15,14 +15,12 @@ class Solution:
         
         while remaining:
             counter += 1
-            # print(counter)
             if counter == k:
                 
                 temp = remaining.next
                 remaining.next = None
                 remaining = temp
                 counter = 0
-                # print(remaining)
                 
                 nxt = prev.next
                 prev.next = self.reverseList(nxt)
@@ -39,7 +37,7 @@ class Solution:
 
         return dummy.next
     
-    def reverseList(self, head, tail = None):
+    def reverseList(self, head):
         
         prev = None
         curr = head
