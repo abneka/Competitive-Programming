@@ -3,10 +3,6 @@ class Solution:
         sub = sum(nums[:k])
         length = len(nums)
         
-        if length == k:
-            return sub/k
-        
-        
         left = 0
         right = k
         
