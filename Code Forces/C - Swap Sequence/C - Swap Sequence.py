@@ -1,20 +1,20 @@
 n = int(input())
-arr = list(map(int, input().split()))
-pairs = []
+data = list(map(int, input().split()))
+pair = []
 
 
-for i in range(len(arr)):
-    min_idx = i
-    for j in range(i + 1, len(arr)):
+for index in range(len(data)):
+    mini = index
+    for left in range(index + 1, len(data)):
         
-        if arr[min_idx] > arr[j]:
-            min_idx = j
+        if data[mini] > data[left]:
+            mini = left
             
             
-    if min_idx != i:
-        pairs.append((i, min_idx))
-        arr[min_idx], arr[i] = arr[i], arr[min_idx]
+    if mini != index:
+        pair.append((index, mini))
+        data[mini], data[index] = data[index], data[mini]
 
-print(len(pairs))
-for res in pairs:
-    print(*res)
+print(len(pair))
+for ans in pair:
+    print(*ans)
