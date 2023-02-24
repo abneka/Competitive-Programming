@@ -2,9 +2,7 @@ class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         length = len(s1)
         left  = 0
-        # right = length
         length_s2 = len(s2)
-        # s2 += '*'
         
         permutation = Counter(s1)
         sub = s2[left:length]
@@ -20,15 +18,5 @@ class Solution:
         
         if permutation == count:
                 return True
-            
-        
-#         while right <= length_s2:
-#             sub = s2[left:right]
-#             if permutation == set(sub):
-#                 return True
-            
-#             right += 1
-#             left += 1
-        
         
         return False
