@@ -1,6 +1,7 @@
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
-        pref_sum = [0] * (len(s) + 1)
+        # pref_sum = [0] * (len(s) + 1)
+        pref_sum = Counter()
         
         for start, end, direction in shifts:
             if direction:
