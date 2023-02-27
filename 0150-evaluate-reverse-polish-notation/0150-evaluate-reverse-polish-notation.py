@@ -5,25 +5,21 @@ class Solution:
         for i in range(len(tokens)):
             if tokens[i] == '+':
                 r = int(result.pop())
-                
                 l = int(result.pop())
                 
                 result.append(l + r)
             elif tokens[i] == '-':
                 r = int(result.pop())
-                
                 l = int(result.pop())
                 
                 result.append(l - r)
             elif tokens[i] == '*':
                 r = int(result.pop())
-                
                 l = int(result.pop())
                 
                 result.append(l * r)
             elif tokens[i] == '/':
                 r = int(result.pop())
-                
                 l = int(result.pop())
                 
                 result.append(l / r)
