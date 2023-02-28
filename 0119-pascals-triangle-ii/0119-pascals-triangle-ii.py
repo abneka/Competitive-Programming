@@ -10,11 +10,8 @@ class Solution:
                 return memo[(row, col)]
             
             memo[(row, col)] = (findArray(row - 1, col - 1) + findArray(row - 1, col))
-            
             return memo[(row, col)]
             
-            # return (findArray(row - 1, col - 1) + findArray(row - 1, col))
-        
         array = []
         for col in range(rowIndex +1):
             array.append(findArray(rowIndex, col))
