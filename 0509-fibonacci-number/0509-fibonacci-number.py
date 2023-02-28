@@ -11,7 +11,7 @@ class Solution:
             if num in memo:
                 return memo[num]
             
-            memo[num] = (self.fib(num-1) + self.fib(num-2))
+            memo[num] = (fibo(num-1) + fibo(num-2))
             return memo[num]
 
         return fibo(n)
