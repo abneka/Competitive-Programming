@@ -5,7 +5,6 @@ class DataStream:
         self.numbers_total = 0
         self.value = value
         self.k = k
-        self.count = k
 
     def consec(self, num: int) -> bool:
         if num != self.value:
