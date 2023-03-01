@@ -4,7 +4,6 @@ class DataStream:
         self.total = value * k
         self.numbers_total = 0
         self.value = value
-        self.k = k
 
     def consec(self, num: int) -> bool:
         if num != self.value:
@@ -16,11 +15,9 @@ class DataStream:
         return False
         
     def reset(self) -> bool:
-        self.count = self.k
         self.numbers_total = 0
         
         return False
-        
 
 
 # Your DataStream object will be instantiated and called as such:
