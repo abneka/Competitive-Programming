@@ -28,7 +28,6 @@ class Solution:
                 return option2
             
         result = findScore(0, len(nums) - 1, True)
-        print(result)
         
         if result[0] >= result[1]:
             return True
