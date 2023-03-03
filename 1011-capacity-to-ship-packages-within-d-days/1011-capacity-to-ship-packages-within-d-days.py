@@ -1,7 +1,11 @@
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
-        left = 1
-        right = sum(weights)
+        left = 0
+        right = 0
+        
+        for weight in weights:
+            left = max(left, weight)
+            right += weight
         
         res = right
         
@@ -12,9 +16,9 @@ class Solution:
             count = 0
             
             for weight in weights:
-                if weight > capacity:
-                    count = days + 1
-                    break
+                # if weight > capacity:
+                #     count = days + 1
+                #     break
                     
                 if total + weight > capacity:
                     count += 1
