@@ -3,6 +3,7 @@ class Solution:
         left = 1
         right = len(arr) - 2
         mid = 0
+
         
         while left <= right:
             mid = (left + right) // 2
