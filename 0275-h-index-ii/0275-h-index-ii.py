@@ -19,10 +19,3 @@ class Solution:
                 right = mid -1
         
         return res
-    
-        
-#         for i, n in enumerate(csorted):
-#             if n >= i+1:
-#                 res = i+1
-                
-#         return res
