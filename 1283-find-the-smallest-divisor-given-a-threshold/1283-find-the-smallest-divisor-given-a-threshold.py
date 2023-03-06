@@ -14,7 +14,7 @@ class Solution:
                 total += math.ceil(num / divisor)
             
             if total <= threshold:
-                res = min(res, divisor)
+                res = divisor
                 right = divisor - 1
             
             else:
