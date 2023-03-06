@@ -4,8 +4,6 @@ class Solution:
         right = len(arr) - 2
         mid = 0
         
-        
-        
         while left <= right:
             mid = (left + right) // 2
             
@@ -17,5 +15,3 @@ class Solution:
                 
             else:
                 right = mid - 1
-        
-        return mid
