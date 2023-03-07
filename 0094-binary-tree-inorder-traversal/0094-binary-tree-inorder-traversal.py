@@ -13,7 +13,6 @@ class Solution:
         
         ans = []
         if not root.left:
-            print(root.val)
             ans.append(root.val)
             if root.right:
                 ans.extend(self.inorderTraversal(root.right))
