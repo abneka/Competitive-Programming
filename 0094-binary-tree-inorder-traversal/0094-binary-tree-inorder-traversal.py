@@ -10,10 +10,9 @@ class Solution:
             return []
         
         ans = []
-        # if root.left:
+        
         ans.extend(self.inorderTraversal(root.left))
         ans.append(root.val)
-        
-        # if root.right:
         ans.extend(self.inorderTraversal(root.right))
+        
         return ans
