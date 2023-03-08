@@ -33,7 +33,6 @@ class Solution:
                 return 0
             
             if root.val == target.val:
-                # print('found')
                 findSuccesor(root, k)
                 return 1
             
@@ -54,6 +53,7 @@ class Solution:
                 if right == k:
                     ans.append(root.val)
                 return right + 1
+            
         findTarget(root, 0, target, k)
             
         return ans
