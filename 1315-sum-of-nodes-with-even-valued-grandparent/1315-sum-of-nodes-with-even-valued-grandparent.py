@@ -6,18 +6,23 @@
 #         self.right = right
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
+        total = 0
+        
         def traverse(root):
+            nonlocal total
             if not root:
-                return 0
+                return None
             
-            total = 0
             if not root.val % 2:
                 total += self.addGrandchilds(root.left, False) + self.addGrandchilds(root.right, False)
                 
-            return traverse(root.right) + traverse(root.left) + total
+            traverse(root.right)
+            traverse(root.left)
         
-        return traverse(root)
+        traverse(root)
             
+        return total
+         
     def addGrandchilds(self, root, Grand):
         if not root:
             return 0
