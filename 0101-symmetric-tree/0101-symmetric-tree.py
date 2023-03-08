@@ -21,7 +21,7 @@ class Solution:
         if not left or not right:
             return False
         
-        check_left = self.checkSymetric(left.left, right.right)
-        check_right = self.checkSymetric(left.right, right.left)
+        # check_left = self.checkSymetric(left.left, right.right)
+        # check_right = self.checkSymetric(left.right, right.left)
         
-        return check_left and left.val == right.val and check_right
+        return self.checkSymetric(left.left, right.right) and left.val == right.val and self.checkSymetric(left.right, right.left)
