@@ -8,8 +8,6 @@
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         ans = []
-        max_depth = 0
-        is_left = True
         # ********************************************************
         def findSuccesor(root, depth):
             nonlocal ans
@@ -30,16 +28,13 @@ class Solution:
         # *******************************************************
         
         def findTarget(root, depth, target, k):
-            nonlocal max_depth
             nonlocal ans
-            nonlocal is_left
             if not root:
                 return 0
             
             if root.val == target.val:
                 # print('found')
                 findSuccesor(root, k)
-                max_depth = depth
                 return 1
             
             left = findTarget(root.left, depth + 1, target, k)
@@ -47,7 +42,6 @@ class Solution:
             right = findTarget(root.right, depth + 1, target, k)
             
             if left:
-                is_left = True
                 if k - (1  + left) > -1:
                     findSuccesor(root.right, k - (1  + left))
                 if left == k:
@@ -55,22 +49,11 @@ class Solution:
                 return left + 1
             
             if right:
-                is_left = False
                 if k - (1 + right) > -1:
                     findSuccesor(root.left, k - (1 + right))
                 if right == k:
                     ans.append(root.val)
                 return right + 1
-        
-        
-        
         findTarget(root, 0, target, k)
-        # print(ans, k, target, root.val, max_depth)
-        # if root.val != target.val and k > max_depth:
-        #     if is_left:
-        #         # print('mm')
-        #         findSuccesor(root.right, k - (max_depth + 1))
-        #     else:
-        #         findSuccesor(root.left, k - (max_depth + 1))
             
         return ans
