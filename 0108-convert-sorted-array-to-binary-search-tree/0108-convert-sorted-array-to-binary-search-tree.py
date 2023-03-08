@@ -12,7 +12,7 @@ class Solution:
         if len(nums) == 1:
             return TreeNode(nums[0])
         
-        mid = (len(nums) -  1) // 2
+        mid = len(nums)// 2
         # print(mid)
         
         node = TreeNode(nums[mid])
