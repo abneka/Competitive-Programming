@@ -9,10 +9,10 @@ class Solution:
                 num = int(string[:index + 1])
                 
                 if prev ==  -1 and int(string) != num:
-                    flag = flag or splitNcheck(string[index + 1:], num)
+                    flag = splitNcheck(string[index + 1:], num) or flag
                 
                 elif num == prev - 1:
-                    flag = flag or splitNcheck(string[index + 1:], num)
+                    flag = splitNcheck(string[index + 1:], num) or flag
                     
             return flag
         
