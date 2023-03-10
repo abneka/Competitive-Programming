@@ -8,18 +8,22 @@ class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         array = []
         
-        def inorderTraversal(root, string):
+        def inorderTraversal(root, path):
             if not root.left and not root.right:
-                string += str(root.val)
-                array.append(string)
+                path.append(str(root.val))
+                array.append('->'.join(path))
+                path.pop()
+                return 
                 
-            string += str(root.val) + '->'
+            path.append(str(root.val))
             if root.left:
-                inorderTraversal(root.left, string)
+                inorderTraversal(root.left, path)
                 
             if root.right:
-                inorderTraversal(root.right, string)
-
-        inorderTraversal(root, '')
+                inorderTraversal(root.right, path)
+            
+            path.pop()
+            
+        inorderTraversal(root, [])
         
         return array
