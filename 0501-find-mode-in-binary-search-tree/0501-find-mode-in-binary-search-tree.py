@@ -5,23 +5,25 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def Traverse(self, root):
-        if root == None:
-            return []
-        array = [root.val]
-        array += self.Traverse(root.left)
-        array += self.Traverse(root.right)
-        
-        return array
-    
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
-        freq = Counter(self.Traverse(root))
-        maxi = max(freq.values())
+        count = Counter()
+
+        def countOccurence(root):
+            if not root:
+                return 
+
+            count[root.val] += 1
+
+            countOccurence(root.left)
+            countOccurence(root.right)
+        
+        countOccurence(root)
+        
+        maxi = max(count.values())
         
         answer = []
-        for key, value in freq.items():
+        for key, value in count.items():
             if value == maxi:
                 answer.append(key)
         
         return answer
-        
