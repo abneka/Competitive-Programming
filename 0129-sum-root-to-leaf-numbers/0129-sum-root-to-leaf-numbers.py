@@ -11,19 +11,19 @@ class Solution:
         def dfs(root, path):
             nonlocal total
             if not root.left and not root.right:
-                path.append(str(root.val))
-                total += int(''.join(path))
-                path.pop()
+                path = ((path * 10) + root.val)
+                total += path
+                path = ((path - root.val) // 10)
                 return
             
-            path.append(str(root.val))
+            path = ((path * 10) + root.val)
             if root.right:
                 dfs(root.right, path)
             
             if root.left:
                 dfs(root.left, path)
-            path.pop()
+            path = ((path - root.val) // 10)
         
-        dfs(root, [])
+        dfs(root, 0)
         return total
     
