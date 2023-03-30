@@ -14,21 +14,16 @@ class Solution:
                 return
             
             total += root.val
-            
-            if prefix[total - targetSum]:
-                ans += prefix[total - targetSum]
+            ans += prefix[total - targetSum]
                 
             prefix[total] += 1
-            pref = prefix.copy()
             
             checkPath(root.right, prefix, total)
-            checkPath(root.left, pref, total)
+            checkPath(root.left, prefix, total)
             
+            prefix[total] -= 1
             
-        
-        prefix = Counter()
-        
-        prefix[0] = 1
+        prefix = Counter([0])
         
         checkPath(root, prefix, 0)
         
