@@ -7,17 +7,15 @@ class Solution:
             if len(path) == length:
                 ans.append(path[::])
                 
-            for index, num in enumerate(nums):
-                if visited[num]:
+            for index in range(length):
+                if visited & (1 << index):
                     continue
                 
-                path.append(num)
-                visited[num] += 1
+                path.append(nums[index])
                 
-                splitNcheck(visited, path)
+                splitNcheck(visited | (1 << index), path)
                 path.pop()
-                visited[num] -= 1
                 
-        splitNcheck(Counter(), [])
+        splitNcheck(0, [])
         
         return ans
