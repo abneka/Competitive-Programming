@@ -1,11 +1,8 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        pos = 0
+        sort = [0] * len(nums)
         
         for num in nums:
-            index = num - 1
-            
-            if pos & (1<<index):
+            if sort[num - 1]:
                 return num
-            
-            pos = pos | (1<<index)
+            sort[num - 1] = num
