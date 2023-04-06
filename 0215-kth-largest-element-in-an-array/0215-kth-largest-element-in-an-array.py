@@ -1,8 +1,7 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        def partition(nums, left, right):
+        def partition(left, right):
             pivot = nums[right]
-            
             index = left - 1
             
             for i in range(left, right):
@@ -11,17 +10,13 @@ class Solution:
                     nums[i], nums[index] = nums[index], nums[i]
                 
             nums[index + 1], nums[right] = nums[right], nums[index + 1]
-            
             return index + 1
         
-        def quickSort(nums, left, right):
+        def quickSort(left, right):
             if left < right:
-                
-                index = partition(nums, left, right)
-                
-                quickSort(nums, index + 1, right)
-                
-                quickSort(nums, left, index - 1)
+                index = partition(left, right)
+                quickSort(index + 1, right)
+                quickSort(left, index - 1)
         
-        quickSort(nums, 0, len(nums) - 1)
+        quickSort(0, len(nums) - 1)
         return nums[-k]
