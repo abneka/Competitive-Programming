@@ -5,16 +5,32 @@ class Solution:
             graph[start].append(end)
             graph[end].append(start)
             
-        def dfs(visited, vertex):
-            if vertex == destination:
-                return True
-            visited.add(vertex)
-            flag = False
-            
-            for negi in graph[vertex]:
-                if negi not in visited:
-                    flag = flag or dfs(visited, negi)
-                    
-            return flag
+        stack = [source]
+        visited = set()
         
-        return dfs(set(), source)
+        while stack:
+            if stack[-1] in visited:
+                stack.pop()
+                continue
+                
+            if stack[-1] == destination:
+                return True
+            visited.add(stack[-1])
+            stack.extend(graph[stack.pop()])
+        
+        return False
+                
+            
+#         def dfs(visited, vertex):
+#             if vertex == destination:
+#                 return True
+#             visited.add(vertex)
+#             flag = False
+            
+#             for negi in graph[vertex]:
+#                 if negi not in visited:
+#                     flag = flag or dfs(visited, negi)
+                    
+#             return flag
+        
+#         return dfs(set(), source)
