@@ -22,28 +22,26 @@ class Solution:
             graph[end].append((1/values[index], start))
             
         def dfs(start, end, value, visited):
+            if not start in graph:
+                return -1
+            
             if start == end:
-                return (True, value)
+                return value
             
             visited.add(start)
             
             for val, next_vertex in graph[start]:
                 if next_vertex in visited:
                     continue
-                found, answer = dfs(next_vertex, end, value * val, visited)
-                if found:
-                    return (found, answer)
+                answer = dfs(next_vertex, end, value * val, visited)
+                if answer != -1:
+                    return answer
             
-            return (False, value)
+            return -1
         
         answer = []
         for start, end in queries:
-            found, ans = dfs(start, end, 1, set())
-            if found and start in graph:
-                answer.append(ans)
-                continue
-            
-            answer.append(-1)
+            answer.append(dfs(start, end, 1, set()))
             
         return answer
                     
