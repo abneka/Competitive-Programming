@@ -5,24 +5,20 @@ class Solution:
         width = len(image[0])
         height = len(image)
         
-        def dfs(curr, visited):
+        def dfs(curr):
             row, col  = curr
             
-            if col == width or row == height or col < 0 or row < 0:
-                return
-            
-            if not image[row][col] == starting:
-                return
-                
             image[row][col] = color
-            visited.add(curr)
             for next_row, next_col in direction:
-                next_pos = (row + next_row, col + next_col)
-                if next_pos in visited:
+                new_row = row + next_row
+                new_col = col + next_col
+                if new_col == width or new_row == height or new_col < 0 or new_row < 0:
+                    continue
+                if image[new_row][new_col] == color or not image[new_row][new_col] == starting:
                     continue
                 
-                dfs(next_pos, visited)
+                dfs((new_row, new_col))
         
-        dfs((sr, sc), set())
+        dfs((sr, sc))
         return image
         
