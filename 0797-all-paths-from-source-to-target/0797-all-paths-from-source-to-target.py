@@ -9,13 +9,6 @@ class Solution:
         
         ans = []
         def dfs(path, index):
-            if not graphs[index]:
-                if index == maximum:
-                    path.append(index)
-                    ans.append(path[::])
-                    path.pop()
-                return
-            
             if index == maximum:
                 path.append(index)
                 ans.append(path[::])
