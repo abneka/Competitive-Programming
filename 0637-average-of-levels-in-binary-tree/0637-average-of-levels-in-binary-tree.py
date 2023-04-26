@@ -12,20 +12,20 @@ class Solution:
         result = []
         
         while queue:
-            new = []
+            level_size = len(queue)
             total = 0
             length = 0
             
-            while queue:
+            while level_size:
                 node = queue.popleft()
                 total += node.val
                 length += 1
                 if node.left:
-                    new.append(node.left)
+                    queue.append(node.left)
                 if node.right:
-                    new.append(node.right)
+                    queue.append(node.right)
+                level_size -= 1
             
             result.append(total/length)
-            queue.extend(new)
             
         return result
