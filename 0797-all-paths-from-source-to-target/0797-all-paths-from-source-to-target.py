@@ -1,15 +1,13 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        length = len(graph)
         graphs = defaultdict(list)
-        maximum = 0
         for index, nodes in enumerate(graph):
             graphs[index] = nodes
-            if nodes:
-                maximum = max(max(nodes), maximum)
         
         ans = []
         def dfs(path, index):
-            if index == maximum:
+            if index == length - 1:
                 path.append(index)
                 ans.append(path[::])
                 path.pop()
