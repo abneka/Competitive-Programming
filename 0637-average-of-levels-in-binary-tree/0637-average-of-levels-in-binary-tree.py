@@ -29,3 +29,4 @@ class Solution:
             result.append(total/length)
             
         return result
+    
