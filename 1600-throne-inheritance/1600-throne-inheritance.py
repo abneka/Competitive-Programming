@@ -13,18 +13,20 @@ class ThroneInheritance:
         self.cementery.add(name)
 
     def getInheritanceOrder(self) -> List[str]:
-        def dfs(start, path):
-            for child in self.kingdom[start]:
-                if not child in self.cementery:
-                    path.append(child)
-                dfs(child, path)
-                
-            return path
+        visited = set()
+        order = []
         
-        path = []
-        if not self.king in self.cementery:
-            path.append(self.king)
-        return dfs(self.king, path)
+        def dfs(start):
+            if start not in visited and start not in self.cementery:
+                visited.add(start)
+                order.append(start)
+            
+            for child in self.kingdom[start]:
+                if not child in visited:
+                    dfs(child)
+        
+        dfs(self.king)
+        return order
                 
 
 
