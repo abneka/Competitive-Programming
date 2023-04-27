@@ -4,12 +4,14 @@ class Solution:
         ans = 0
         graph = defaultdict(list)
         
-        for i in range(length):
-            for j in range(length):
-                if i == j: continue
-                if bombs[i][2]**2 >= (bombs[i][0] - bombs[j][0])**2 + (bombs[i][1] - bombs[j][1])**2:
-                    graph[i] += [j]
-        
+        for index in range(length):
+            for ind in range(index + 1, length):
+                distance = (bombs[index][0]-bombs[ind][0])**2 + (bombs[index][1]-bombs[ind][1])**2
+                
+                if (bombs[index][2])**2 >= distance:
+                    graph[index + 1].append(ind + 1)
+                if (bombs[ind][2])**2 >= distance:
+                    graph[ind + 1].append(index + 1)
         
         
         def dfs(node, visited):
@@ -18,7 +20,7 @@ class Solution:
                     visited.add(child)
                     dfs(child, visited)
 
-        for i in range(length):
+        for i in range(1, length + 1):
             visited = set([i])
             dfs(i, visited)
             ans = max(ans, len(visited))
