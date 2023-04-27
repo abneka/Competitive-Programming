@@ -5,11 +5,11 @@ class Solution:
         
         for index in range(length):
             for ind in range(index + 1, length):
-                distance = sqrt((bombs[index][0]-bombs[ind][0])**2 + (bombs[index][1]-bombs[ind][1])**2)
+                distance = (bombs[index][0]-bombs[ind][0])**2 + (bombs[index][1]-bombs[ind][1])**2
                 
-                if bombs[index][2] >= distance:
+                if (bombs[index][2])**2 >= distance:
                     graph[index + 1].append(ind + 1)
-                if bombs[ind][2] >= distance:
+                if (bombs[ind][2])**2 >= distance:
                     graph[ind + 1].append(index + 1)
                     
         
