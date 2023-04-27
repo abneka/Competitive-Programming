@@ -1,6 +1,7 @@
 class Solution:
     def maximumDetonation(self, bombs: List[List[int]]) -> int:
         length = len(bombs)
+        ans = 0
         graph = defaultdict(list)
         
         for index in range(length):
@@ -11,23 +12,17 @@ class Solution:
                     graph[index + 1].append(ind + 1)
                 if (bombs[ind][2])**2 >= distance:
                     graph[ind + 1].append(index + 1)
-                    
         
-        def depth(start, visited):
-            if start in visited:
-                return 0
-
-            visited.append(start)
-            detonate = 1
-            
-            for child in graph[start]:
+        
+        def dfs(node, visited):
+            for child in graph[node]:
                 if child not in visited:
-                    detonate += depth(child, visited)
-            
-            return detonate
-        
-        result = 1
-        for start in range(1, length + 1):
-            result = max(result, depth(start, []))
-        
-        return result
+                    visited.add(child)
+                    dfs(child, visited)
+
+        for i in range(1, length + 1):
+            visited = set([i])
+            dfs(i, visited)
+            ans = max(ans, len(visited))
+                          
+        return ans
