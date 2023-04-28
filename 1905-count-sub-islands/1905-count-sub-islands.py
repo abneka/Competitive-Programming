@@ -12,8 +12,6 @@ class Solution:
                     start.append((row_index, col_index))
                     continue
                 
-                # grid1[row_index][col_index] = 0
-                    
         visited = set()
         def dfs(row, col):
             if not grid1[row][col] and grid2[row][col] or (row, col) in visited:
