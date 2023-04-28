@@ -4,6 +4,7 @@ class Solution:
         
         max_row = len(grid1)
         max_col = len(grid1[0])
+        inbound = lambda row, col : 0 <= row < max_row and 0 <= col < max_col
         start = []
         
         for row_index, row in enumerate(grid1):
@@ -21,17 +22,12 @@ class Solution:
                 return 1
             visited.add((row, col))
             result = 1
-            for move in moves:
-                next_row, next_col = move
-                next_row += row
-                next_col += col
-                if (next_row, next_col) in visited:
+            for next_row, next_col in moves:
+                if (next_row + row, next_col + col) in visited:
                     continue
                     
-                if next_row == max_row or next_col == max_col or next_col < 0 or next_row < 0:
-                    continue
-                
-                result *= dfs(next_row, next_col)
+                if inbound(next_row + row, next_col + col):
+                    result *= dfs(next_row + row, next_col + col)
                 
             return result
         
