@@ -15,7 +15,7 @@ class Solution:
                 # grid1[row_index][col_index] = 0
                     
         visited = set()
-        def dfs(row, col, visited):
+        def dfs(row, col):
             if not grid1[row][col] and grid2[row][col] or (row, col) in visited:
                 return 0
             
@@ -33,10 +33,10 @@ class Solution:
                 if next_row == max_row or next_col == max_col or next_col < 0 or next_row < 0:
                     continue
                 
-                result *= dfs(next_row, next_col, visited)
+                result *= dfs(next_row, next_col)
                 
             return result
         result = 0
         for row, col in start:
-            result += dfs(row, col, visited)
+            result += dfs(row, col)
         return result
