@@ -34,7 +34,6 @@ class Solution:
                 result *= dfs(next_row, next_col)
                 
             return result
-        
         result = 0
         for row, col in start:
             result += dfs(row, col)
