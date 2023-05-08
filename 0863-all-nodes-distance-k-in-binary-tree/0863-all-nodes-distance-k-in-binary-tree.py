@@ -1,59 +1,43 @@
 # Definition for a binary tree node.
 # class TreeNode:
-#     def init(self, x):
+#     def __init__(self, x):
 #         self.val = x
 #         self.left = None
 #         self.right = None
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        graph = defaultdict(list)
+        def traverse(root):
+            if not root:
+                return
+            
+            if root.left:
+                graph[root.left.val].append(root.val)
+                graph[root.val].append(root.left.val)
+                traverse(root.left)
+            if root.right:
+                graph[root.right.val].append(root.val)
+                graph[root.val].append(root.right.val)
+                traverse(root.right)
+        traverse(root)
+        
+        queue = deque([target.val])
+        visited = set()
+        visited.add(target.val)
+        
+        path = 0
         ans = []
-        # ********************************************************
-        def findSuccesor(root, depth):
-            nonlocal ans
-            if not root:
-                return None
-            if not depth:
-                if ans and ans[-1] == root.val:
-                    return None
-                ans.append(root.val)
-                return None
-            
-            if root and root.right:
-                findSuccesor(root.right, depth - 1)
-
-            if root and root.left:
-                findSuccesor(root.left, depth - 1)
-        
-        # *******************************************************
-        
-        def findTarget(root, depth, target, k):
-            nonlocal ans
-            if not root:
-                return 0
-            
-            if root.val == target.val:
-                findSuccesor(root, k)
-                return 1
-            
-            left = findTarget(root.left, depth + 1, target, k)
-            
-            right = findTarget(root.right, depth + 1, target, k)
-            
-            if left:
-                if k - (1  + left) > -1:
-                    findSuccesor(root.right, k - (1  + left))
-                if left == k:
-                    ans.append(root.val)
-                return left + 1
-            
-            if right:
-                if k - (1 + right) > -1:
-                    findSuccesor(root.left, k - (1 + right))
-                if right == k:
-                    ans.append(root.val)
-                return right + 1
-            
-        findTarget(root, 0, target, k)
-            
+        while queue:
+            for i in range(len(queue)):
+                temp = queue.popleft()
+                
+                if path == k:
+                    ans.append(temp)
+                
+                for num in graph[temp]:
+                    if num not in visited:
+                        queue.append(num)
+                        visited.add(num)
+            path += 1
         return ans
