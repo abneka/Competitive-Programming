@@ -9,14 +9,8 @@ class Solution:
                 graph[ingrs].append(recipe)
         
         visited = set()
-        queue = deque()
-        
-        for supp in supplies:
-            if not dep_graph[supp]:
-                queue.append(supp)
-        
+        queue = deque(supplies)
         recipes = set(recipes)
-        
         ans = []
         
         while queue:
