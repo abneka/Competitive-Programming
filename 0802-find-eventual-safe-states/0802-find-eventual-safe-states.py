@@ -15,12 +15,14 @@ class Solution:
             # if node in safe:
             #     return True
             
-            if node in visited:
-                return False
+            # if node in visited:
+            #     return False
             
             # temp = set([node])
-            visited.add(node)
+            # visited.add(node)
             # temp.update(visited)
+            
+            memo[node] = False
             
             for next_node in g[node]:
                 if next_node in memo:
@@ -31,7 +33,7 @@ class Solution:
                 if not val:
                     memo[node] = False
                     return val
-            visited.remove(node)
+            # visited.remove(node)
             memo[node] = True
             return True
         
