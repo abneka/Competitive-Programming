@@ -1,20 +1,12 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        safe = set()
         length = len(graph)
-        g = defaultdict(list)
-        
-        for index, node in enumerate(graph):
-            if not node:
-                safe.add(index)
-            g[index] = node
-            
         memo = {}
         
         def dfs(node, visited):
             memo[node] = False
             
-            for next_node in g[node]:
+            for next_node in graph[node]:
                 if next_node in memo:
                     if not memo[next_node]:
                         return False
