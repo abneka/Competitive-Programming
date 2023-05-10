@@ -12,16 +12,6 @@ class Solution:
         memo = {}
         
         def dfs(node, visited):
-            # if node in safe:
-            #     return True
-            
-            # if node in visited:
-            #     return False
-            
-            # temp = set([node])
-            # visited.add(node)
-            # temp.update(visited)
-            
             memo[node] = False
             
             for next_node in g[node]:
@@ -29,11 +19,11 @@ class Solution:
                     if not memo[next_node]:
                         return False
                     continue
-                val = dfs(next_node, visited)
-                if not val:
+                    
+                if not dfs(next_node, visited):
                     memo[node] = False
-                    return val
-            # visited.remove(node)
+                    return False
+                
             memo[node] = True
             return True
         
