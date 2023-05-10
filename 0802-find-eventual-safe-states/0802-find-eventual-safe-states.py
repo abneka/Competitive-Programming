@@ -12,8 +12,8 @@ class Solution:
         memo = {}
         
         def dfs(node, visited):
-            if node in safe:
-                return True
+            # if node in safe:
+            #     return True
             
             if node in visited:
                 return False
