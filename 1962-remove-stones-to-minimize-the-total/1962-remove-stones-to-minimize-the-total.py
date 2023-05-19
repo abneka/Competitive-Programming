@@ -1,17 +1,17 @@
 class Solution:
     def minStoneSum(self, piles: List[int], k: int) -> int:
-        total = 0
+        total = sum(piles)
         piles = [-num for num in piles]
         heapify(piles)
         
-        while piles:
+        while k and piles:
             num = heappop(piles)
             
-            if k:
-                heappush(piles, (num//2))
-                k -= 1
+            total -= (-num//2)
+            num =-( ceil(-num/2))
             
-            else:
-                total += -num
+            if num <= -2:
+                heappush(piles,num)
+            k -= 1
             
         return total
