@@ -18,8 +18,4 @@ class Solution:
             else:
                 heappush(heap,(num,1))
                 
-        for i in range(len(heap)):
-            num,leng = heap[i]
-            if leng < 3:
-                return False
-        return True
+        return all(size[1] >= 3 for size in heap)
