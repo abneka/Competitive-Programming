@@ -8,24 +8,17 @@ class Solution:
         ans = []
         length = len(tasks)
         
-        while curr < length:
-            enq, process, index = tasks[curr]
-            if enq <= time:
-                heappush(heap, [process, index])
+        while heap or curr < length:
+            while curr < length and tasks[curr][0] <= time:
+                heappush(heap, [tasks[curr][1], tasks[curr][2]])
                 curr += 1
-                continue
-                
+            
             if not heap:
                 time = tasks[curr][0]
-                continue
             
-            process, task = heappop(heap)
-            time += process
-            ans.append(task)
-            
-            
-        while heap:
-            process, task = heappop(heap)
-            ans.append(task)
-        
+            else:
+                process, task = heappop(heap)
+                time += process
+                ans.append(task)
+                
         return ans
