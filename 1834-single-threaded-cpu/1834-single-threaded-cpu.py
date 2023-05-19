@@ -7,7 +7,7 @@ class Solution:
         heap = []
         ans = []
         length = len(tasks)
-        print(tasks)
+        
         while curr < length:
             enq, process, index = tasks[curr]
             if enq <= time:
