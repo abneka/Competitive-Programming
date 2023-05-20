@@ -1,36 +1,24 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        graph = defaultdict(list)
-        for start, end in edges:
-            graph[start].append(end)
-            graph[end].append(start)
-            
-        stack = [source]
-        visited = set()
+        graph = defaultdict(int)
         
-        while stack:
-            if stack[-1] in visited:
-                stack.pop()
-                continue
-                
-            if stack[-1] == destination:
-                return True
-            visited.add(stack[-1])
-            stack.extend(graph[stack.pop()])
-        
-        return False
-                
+        for node in range(n):
+            graph[node] = node
             
-#         def dfs(visited, vertex):
-#             if vertex == destination:
-#                 return True
-#             visited.add(vertex)
-#             flag = False
+        def union(node1, node2):
+            parent1 = find(node1)
+            parent2 = find(node2)
             
-#             for negi in graph[vertex]:
-#                 if negi not in visited:
-#                     flag = flag or dfs(visited, negi)
-                    
-#             return flag
+            if parent1 != parent2:
+                graph[parent1] = parent2
+            
+        def find(node):
+            while graph[node] != node:
+                node = graph[node]
+            
+            return node
         
-#         return dfs(set(), source)
+        for u, v in edges:
+            union(u, v)
+        
+        return find(source) == find(destination)
