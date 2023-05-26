@@ -1,6 +1,6 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        memo = [-1 for _ in range(len(nums))]
+        memo = {}
         
         def climb (n):
             
@@ -9,7 +9,7 @@ class Solution:
             if n <= 1:
                 return nums[n]
             
-            if memo[n] == -1:
+            if n not in memo:
                 memo[n] = max(climb(n-2) + nums[n], climb(n-3) + nums[n])
             
             return memo[n]
