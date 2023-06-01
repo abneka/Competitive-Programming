@@ -1,16 +1,14 @@
 class Solution:
     def tribonacci(self, n: int) -> int:
-        memo = {}
+        arr = [0, 1, 1]
         
-        def tribo (n):
-            if not n:
-                return 0
-            if n <= 2:
-                return 1
-            
-            if n not in memo:
-                memo[n] = tribo(n-1) + tribo(n-2) + tribo(n-3) 
-            
-            return memo[n]
+        if n < 3:
+            return arr[n]
         
-        return tribo(n)
+        for num in range(3, n + 1):
+            temp = sum(arr)
+            arr[0] = arr[1]
+            arr[1] = arr[2]
+            arr[2] = temp
+        
+        return arr[-1]
