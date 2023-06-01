@@ -4,23 +4,15 @@ class Solution:
         
         '''
         length = len(coins)
-        memo = [[-1] * amount for _ in range(length)]
-        def dp(index, val):
-            if index == length or val > amount:
-                return float('inf')
-            if val == amount:
-                return 0
-            
-            if memo[index][val] == -1:
-                take_n_repeat = dp(index, val + coins[index]) + 1
-                take_n_leave = dp(index + 1, val + coins[index]) + 1
-                leave = dp(index + 1, val)
-
-                memo[index][val] = min([take_n_leave, take_n_repeat, leave])
-                
-            return memo[index][val]
-            
-            
-        ans = dp(0, 0)
+        arr = [0 for i in range(amount + 1)]
         
-        return ans if ans != float('inf') else -1
+        for num in range(1, amount + 1):
+            mini = float('inf')
+            for coin in coins:
+                if num - coin < 0:
+                    continue
+                mini = min(mini, arr[num - coin] + 1)
+            
+            arr[num] = mini
+        
+        return arr[-1] if arr[-1] != float('inf') else -1
