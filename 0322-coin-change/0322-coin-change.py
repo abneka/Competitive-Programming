@@ -3,7 +3,6 @@ class Solution:
         '''
         
         '''
-        length = len(coins)
         arr = [0 for i in range(amount + 1)]
         
         for num in range(1, amount + 1):
