@@ -4,12 +4,9 @@ class Solution:
         memo = [0, 0]
         
         for index in range(length - 1, -1, -1):
-            for j in range(2):
-                if not j:
-                    #selling
-                    memo[j] = max(memo[j], memo[1] + prices[index] - fee)
-                else:
-                    #buying
-                    memo[j] = max(memo[j], memo[0] - prices[index])
+            #selling
+            memo[0] = max(memo[0], memo[1] + prices[index] - fee)
+            #buying
+            memo[1] = max(memo[1], memo[0] - prices[index])
                     
         return memo[1]
