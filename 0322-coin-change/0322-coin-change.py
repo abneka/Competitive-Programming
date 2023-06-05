@@ -3,15 +3,14 @@ class Solution:
         '''
         
         '''
-        arr = [0 for i in range(amount + 1)]
+        arr = [0] * (amount + 1)
         
-        for num in range(1, amount + 1):
+        for index in range(1, amount + 1):
             mini = float('inf')
             for coin in coins:
-                if num - coin < 0:
-                    continue
-                mini = min(mini, arr[num - coin] + 1)
-            
-            arr[num] = mini
+                if index - coin >= 0:
+                    mini = min(mini, arr[index - coin] + 1)
+            arr[index] = mini
         
         return arr[-1] if arr[-1] != float('inf') else -1
+                    
