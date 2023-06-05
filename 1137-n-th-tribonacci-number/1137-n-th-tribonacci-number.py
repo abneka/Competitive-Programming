@@ -5,10 +5,10 @@ class Solution:
         if n < 3:
             return arr[n]
         
-        for num in range(3, n + 1):
-            temp = sum(arr)
+        for _ in range(3, n + 1):
+            new = sum(arr)
             arr[0] = arr[1]
             arr[1] = arr[2]
-            arr[2] = temp
+            arr[2] = new
         
         return arr[-1]
