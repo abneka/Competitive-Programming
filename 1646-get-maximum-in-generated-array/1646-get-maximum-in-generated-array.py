@@ -1,18 +1,20 @@
 class Solution:
     def getMaximumGenerated(self, n: int) -> int:
-        if not n:
-            return 0
+        memo = [-1] * (n + 2)
         
-        arr = [0] * (n + 1)
-        arr[1] = 1
-        maxi = 1
+        def dp(num):
+            if num < 2:
+                return num
+            if memo[num] == -1:
+                half = num // 2
+                if num % 2:
+                    memo[num] = dp(half) + dp(half + 1)
+                else:
+                    memo[num] = dp(half)
+            return memo[num]
         
-        for index in range(2, n + 1):
-            half = index // 2
-            if index % 2:
-                arr[index] = arr[half] + arr[half + 1]
-            else:
-                arr[index] = arr[half]
-            maxi = max(arr[index], maxi)
-        
-        return maxi
+        ans = 0
+        for i in range(n):
+            ans = max(ans, dp(n - i))
+            
+        return ans
