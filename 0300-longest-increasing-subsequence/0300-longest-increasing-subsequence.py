@@ -1,13 +1,13 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        length = len(nums)
-        memo = [1] * length
-        ans = 1
-
-        for index in range(length, -1, -1):
-            for ind in range(index + 1, length):
-                if nums[index] < nums[ind]:
-                    memo[index] = max(memo[index], memo[ind] + 1)
-                    ans = max(ans, memo[index])
+        stack = [float('inf')]
         
-        return ans
+        for num in nums:
+            index = bisect_left(stack, num)
+            
+            if index == len(stack):
+                stack.append(num)
+            else:
+                stack[index] = num
+        
+        return len(stack)
