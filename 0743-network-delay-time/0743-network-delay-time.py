@@ -1,0 +1,29 @@
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        graph = defaultdict(list)
+        
+        for u, v, w in times:
+            graph[u].append((w, v))
+        
+        queue = [(0, k)]
+        distance = [float('inf')] * n
+        distance[k - 1] = 0
+        visited = set()
+        
+        while queue:
+            curr, node = heappop(queue)
+            
+            if node in visited:
+                continue
+            
+            visited.add(node)
+            
+            for weight, neigh in graph[node]:
+                dist = curr + weight
+                
+                if dist < distance[neigh - 1]:
+                    distance[neigh - 1] = dist
+                    # distance[0] = min(distance[0], dist)
+                heappush(queue, (dist, neigh))
+                    
+        return max(distance) if max(distance) != float('inf') else -1
