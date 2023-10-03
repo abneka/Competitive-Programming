@@ -23,7 +23,6 @@ class Solution:
                 
                 if dist < distance[neigh - 1]:
                     distance[neigh - 1] = dist
-                    # distance[0] = min(distance[0], dist)
                 heappush(queue, (dist, neigh))
                     
         return max(distance) if max(distance) != float('inf') else -1
