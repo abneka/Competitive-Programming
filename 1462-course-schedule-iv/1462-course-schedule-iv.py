@@ -1,29 +1,17 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        graph = defaultdict(list)
-        outdeg = defaultdict(int)
-        pre = [set() for _ in range(numCourses)]
+        connected = [[False] * numCourses for _ in range(numCourses)]
+        
+        for i in range(numCourses):
+            connected[i][i] = True
         
         for indep, dep in prerequisites:
-            graph[dep].append(indep)
-            outdeg[indep] += 1
-            
-        queue = deque()
+            connected[indep][dep] = True
         
-        for node in range(numCourses):
-            if not outdeg[node]:
-                queue.append(node)
+        for k in range(numCourses):
+            for i in range(numCourses):
+                for j in range(numCourses):
+                    if connected[i][k] and connected[k][j]:
+                        connected[i][j] = True
         
-        while queue:
-            node = queue.popleft()
-            
-            for course in graph[node]:
-                pre[course].add(node)
-                pre[course].update(pre[node])
-                
-                outdeg[course] -= 1
-                
-                if not outdeg[course]:
-                    queue.append(course)
-        
-        return [dep in pre[indep] for indep, dep in queries]
+        return [connected[i][j] for i, j in queries]
