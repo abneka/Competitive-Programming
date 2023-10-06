@@ -1,17 +1,17 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
         graph = defaultdict(list)
-        indeg = defaultdict(int)
+        outdeg = defaultdict(int)
         pre = [set() for _ in range(numCourses)]
         
-        for dep, indep in prerequisites:
-            graph[indep].append(dep)
-            indeg[dep] += 1
+        for indep, dep in prerequisites:
+            graph[dep].append(indep)
+            outdeg[indep] += 1
             
         queue = deque()
         
         for node in range(numCourses):
-            if not indeg[node]:
+            if not outdeg[node]:
                 queue.append(node)
         
         while queue:
@@ -21,9 +21,9 @@ class Solution:
                 pre[course].add(node)
                 pre[course].update(pre[node])
                 
-                indeg[course] -= 1
+                outdeg[course] -= 1
                 
-                if not indeg[course]:
+                if not outdeg[course]:
                     queue.append(course)
         
         return [dep in pre[indep] for indep, dep in queries]
