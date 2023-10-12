@@ -14,7 +14,7 @@ class MyHashMap:
 
     def remove(self, key: int) -> None:
         if key in self.hmap:
-            del self.hmap[key]
+            self.hmap.pop(key)
 
 
 # Your MyHashMap object will be instantiated and called as such:
