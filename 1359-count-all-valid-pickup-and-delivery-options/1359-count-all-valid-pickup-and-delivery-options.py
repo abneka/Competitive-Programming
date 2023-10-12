@@ -6,5 +6,6 @@ class Solution:
         for num in range(1, n + 1):
             num *= 2
             memo *= (num * (num - 1)//2)
+            memo %= mod
         
-        return memo % mod
+        return memo
