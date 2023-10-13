@@ -6,17 +6,18 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        arr = self.inorderTraversal(root)
-        return all(arr[index] < arr[index + 1] for index in range(len(arr) - 1))
-        
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        array = self.traverse(root)
+        return all(array[index] > array[index - 1] for index in range(1, len(array)))
+    
+    def traverse(self, root):
         if not root:
             return []
         
-        ans = []
+        array = []
         
-        ans.extend(self.inorderTraversal(root.left))
-        ans.append(root.val)
-        ans.extend(self.inorderTraversal(root.right))
+        array.extend(self.traverse(root.left))
+        array.append(root.val)
+        array.extend(self.traverse(root.right))
         
-        return ans
+        return array
+    
