@@ -1,11 +1,14 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        memo = [1] + ([0] * amount)
-        inbound = lambda col : 0 <= col < amount + 1
-        
-        for coin in coins:
-            for col in range(1, amount + 1):
-                if inbound(col - coin):
-                    memo[col] += memo[col - coin]
-        
-        return memo[-1]
+        length = len(coins)
+        @cache
+        def dp(index, total):
+            if index == length or total > amount:
+                return 0
+            
+            if total == amount:
+                return 1
+            
+            return dp(index + 1, total) + dp(index, total + coins[index])
+            
+        return dp(0, 0)
