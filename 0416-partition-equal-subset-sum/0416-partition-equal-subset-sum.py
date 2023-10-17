@@ -7,11 +7,14 @@ class Solution:
             return False
         
         memo = set()
-        
+        memo.add(0)
         for num in nums:
-            temp = list(memo)
-            for val in temp:
-                memo.add(val + num)
-            memo.add(num)
+            new = set()
+            for part in memo:
+                if part + num == half:
+                    return True
+                new.add(part + num)
+                new.add(part)
+            memo = new
         
-        return half in memo
+        return False
